@@ -1,0 +1,35 @@
+{
+	"root": true,
+	"extends": "airbnb-base",
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "script"
+	},
+	"env": {
+		"node": true,
+		"es6": true
+	},
+	"rules": {
+		"strict": ["error", "global"],
+		"indent": ["error", "tab"],
+		"semi": ["error", "always"],
+		"no-tabs": "off",
+		"arrow-parens": ["error", "as-needed"],
+		"comma-dangle": "off",
+		"prefer-destructuring": "off",
+		"no-use-before-define": ["error", "nofunc"],
+		"max-len": ["error", {
+			"code": 140,
+			"comments": 180,
+			"ignoreTrailingComments": true
+		}],
+		"import/no-extraneous-dependencies": ["error", {
+			"devDependencies": [
+				"test/**/*.js",
+				"tests/**/*.js",
+				"tools/**/*.js"
+			]
+		}],
+		"no-plusplus": "off"
+	}
+}
