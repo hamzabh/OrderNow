@@ -5,7 +5,7 @@ const { KNEX } = require('../db/connexion');
 
 async function createUser(req, res) {
 	const body = req.body;
-	const result = await transaction(KNEX, ({ user }) => user.insert([body]));
+	const result = await insertUser(body);
 	if (result) {
 		console.log('User created ', body);
 		res.sendStatus(200);
@@ -13,6 +13,11 @@ async function createUser(req, res) {
 		res.sendStatus(409);
 	}
 }
+
+async function insertUser(userToCreate){
+	return await transaction(KNEX, ({ user }) => user.insert([userToCreate]));
+}
+
 module.exports = Object.freeze({
-	createUser
+	createUser, insertUser
 });

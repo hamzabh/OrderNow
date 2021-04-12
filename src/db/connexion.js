@@ -9,18 +9,24 @@ async function getConnectionInfo() {
 		password: 'postgres',
 		database: 'ordernow'
 	};
-
 }
 
 async function getConnection() {
-	const infos = await getConnectionInfo();
-	return knex({
-		client: 'pg',
-		connection: infos,
-		pool: { min: 2, max: 20 }
-	});
-}
 
+	if (process.env.NODE_ENV === 'test') {
+		return knex({
+			client: 'sqlite3',
+			connection: ':memory:'
+		});
+	} else {
+		const infos = await getConnectionInfo();
+		return knex({
+			client: 'pg',
+			connection: infos,
+			pool: { min: 2, max: 20 }
+		});
+	}
+}
 
 const KNEX = getConnection();
 

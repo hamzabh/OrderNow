@@ -1,5 +1,5 @@
 {
-  "name": "orderNow",
+  "name": "ordernow",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "nodemon index.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "set NODE_ENV=test&&mocha --recursive tests --exit --timeout 5000"
   },
   "keywords": [],
   "author": "",
@@ -16,13 +16,20 @@
     "body-parser": "^1.19.0",
     "config": "^3.3.3",
     "express": "^4.17.1",
+    "express-joi-validator": "^2.0.1",
     "knex": "^0.21.17",
     "nodemon": "^2.0.7",
     "pg": "^8.5.1"
   },
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "dotenv": "^8.2.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "joi": "^17.4.0",
+    "mocha": "^8.3.2",
+    "sqlite3": "^5.0.2"
   }
 }
