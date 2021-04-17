@@ -3,11 +3,10 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const { KNEX } = require('./../src/db/connexion');
+const { KNEX } = require('../src/db/connexion');
 const schema = require('./schema');
 
-const app = require('./../src/app');
-
+const app = require('../src/app');
 
 const { expect } = chai;
 chai.use(chaiHttp);

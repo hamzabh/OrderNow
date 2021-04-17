@@ -14,7 +14,7 @@ async function createUser(req, res) {
 	}
 }
 
-async function insertUser(userToCreate){
+async function insertUser(userToCreate) {
 	return await transaction(KNEX, ({ user }) => user.insert([userToCreate]));
 }
 

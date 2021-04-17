@@ -1,15 +1,13 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 
-const schema = {
-    body: {
-        name: Joi.string().required(),
-        email: Joi.string().required()
-    },
-    params: {
-        userId: Joi.number().required()
-    }
+const schemas = {
+	body: Joi.object().keys({
+		name: Joi.string().required(),
+		email: Joi.string().required()
+	}),
+	params: Joi.object().keys({
+		userId: Joi.number().required()
+	})
 };
 
-module.exports = {
-    schema
-}
+module.exports = schemas;

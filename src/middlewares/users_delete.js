@@ -10,7 +10,7 @@ async function deleteUserById(req, res) {
 	res.sendStatus(204);
 }
 
-async function deleteUser(id){
+async function deleteUser(id) {
 	return await transaction(KNEX, ({ user }) => user.deleteById(id));
 }
 
