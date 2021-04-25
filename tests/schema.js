@@ -1,7 +1,7 @@
 'use strict';
 
 exports.up = async function up(knex) {
-	await knex.schema.createTable('user', (table) => {
+	await knex.schema.createTable('user', table => {
 		table.increments('id');
 		table.string('name');
 		table.string('email');

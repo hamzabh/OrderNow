@@ -13,7 +13,7 @@ async function getAllUsers(req, res) {
 	}
 }
 
-async function getUsers(){
+async function getUsers() {
 	return await transaction(KNEX, ({ user }) => user.findAll());
 }
 
@@ -28,7 +28,7 @@ async function getUserById(req, res) {
 	}
 }
 
-async function getUser(id){
+async function getUser(id) {
 	return await transaction(KNEX, ({ user }) => user.findById(id));
 }
 
