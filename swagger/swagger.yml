@@ -1,0 +1,163 @@
+openapi: 3.0.0
+info:
+  version: 0.1.0
+  title: OrderNow
+  description: order now
+  
+tags:
+  - name: User
+
+
+paths:
+  /users:
+    get:
+      summary: Get all users  
+      operationId: getAllUsers
+      tags:
+        - User
+      responses:
+        '200':
+          description: >-
+            Success  
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: An unexpected error occurred while processing the request
+    post:
+      summary: Create an user
+      tags:
+        - User
+      requestBody:
+        description: Body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "204":
+          description: Success
+        "409":
+          description: The user already exist
+
+
+  '/users/{userId}':
+    get:
+      operationId: getUserById
+      tags:
+        - User
+      summary: >-
+        Get an user
+      parameters:
+        - in: path
+          name: userId
+          description: user identifier 
+          schema:
+            type: number
+          required: true
+      responses:
+        "200":
+          description: >-
+            Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "204":
+          description: There are no user with this Id
+        "500":
+          description: An unexpected error occurred while processing the request
+    delete:
+      operationId: deleteUserById
+      tags:
+        - User
+      summary: >-
+        Delete an user
+      parameters:
+        - in: path
+          name: userId
+          description: user identifier 
+          schema:
+            type: number
+          required: true
+      responses:
+        "204":
+          description: Successfull operation
+        "500":
+          description: An unexpected error occurred while processing the request
+    put:
+      operationId: updateUserById
+      tags:
+        - User
+      summary: >-
+        Update an user
+      parameters:
+        - in: path
+          name: userId
+          description: user identifier 
+          schema:
+            type: number
+          required: true
+      requestBody:
+        description: Body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:   
+        "200":
+          description: Successfull operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "500":
+          description: An unexpected error occurred while processing the request
+
+components:
+
+  schemas:
+    User:
+      title: User
+      type: object
+      description: Description of an User
+      properties:
+        id:
+          type: number
+          description: The unique id of the user.
+          example: 1
+        name:
+          type: string
+          description: The name of the user.
+          example: Hamza
+        email:
+          type: string
+          description: The email of the user.
+          example: hamza@mail.fr
+          
+    Error:
+        title: Error
+        type: object
+        properties:
+          errorCode:
+            type: string
+            description: code of the error message
+          errorMessage:
+            type: string
+            description: Detail error message
+          debugId:
+            description: >-
+              A unique error identifier generated on the server-side and logged for
+              correlation purposes.
+            type: string
+        required:
+          - errorCode
+          - errorMessage
+          - debugId
+
+
