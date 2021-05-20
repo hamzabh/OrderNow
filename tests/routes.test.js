@@ -82,7 +82,7 @@ describe('routes', () => {
 		});
 		it('User should not exist - 10/Hamza', async () => {
 			const result = await chai.request(app).get('/users/10');
-			expect(result).to.have.status(204);
+			expect(result).to.have.status(404);
 		});
 	});
 	describe('/users - DELETE', () => {
@@ -92,17 +92,18 @@ describe('routes', () => {
 			email: 'hamza@mail.fr'
 		};
 		beforeEach(async () => {
-			response = await chai.request(app).post('/users').send(body);
+			await chai.request(app).post('/users').send(body);
+			response = await chai.request(app).delete('/users/1')
 		});
 
-		it('User should be created', async () => {
-			expect(response).to.have.status(200);
+
+		it('User should be deleted', async () => {
+			expect(response).to.have.status(204);
 		});
-		it('Get User create by Id - 1/Hamza', async () => {
+		it('User - 1/Hamza not found', async () => {
 			const result = await chai.request(app).get('/users/1');
-			expect(result).to.have.status(200);
-			expect(result).to.be.json;
-			expect(result.body).to.deep.equal([{ name: 'Hamza', email: 'hamza@mail.fr' }]);
+			expect(result).to.have.status(404);
+
 		});
 	});
 });

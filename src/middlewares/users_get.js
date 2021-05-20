@@ -9,7 +9,7 @@ async function getAllUsers(req, res) {
 	if (result && result.length > 0) {
 		res.send(result);
 	} else {
-		res.sendStatus(204);
+		res.sendStatus(404);
 	}
 }
 
@@ -24,7 +24,7 @@ async function getUserById(req, res) {
 	if (result && result.length > 0) {
 		res.send(result);
 	} else {
-		res.sendStatus(204);
+		res.sendStatus(404);
 	}
 }
 
