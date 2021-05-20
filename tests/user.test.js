@@ -5,6 +5,7 @@ const chai = require('chai');
 const { getUsers, getUser } = require('../src/middlewares/users_get');
 const { insertUser } = require('../src/middlewares/users_add');
 const { deleteUser } = require('../src/middlewares/users_delete');
+const { updateUser } = require('../src/middlewares/users_update');
 
 const { KNEX } = require('../src/db/connexion');
 const schema = require('./schema');
@@ -91,6 +92,29 @@ describe('Users', () => {
 		it('Delete User - 1/Pierre Not found', async () => {
 			const result = await connexion('user').where(user);
 			expect(result).to.have.length(0);
+		});
+	});
+	describe('Update User', () => {
+		const user = {
+			name: 'user',
+			email: 'user@mail.fr'
+		};
+		let connexion;
+		beforeEach(async () => {
+			connexion = await knex;
+			await connexion('user').insert(user);
+
+		});
+		it('Update User - 1/user/user@mail.fr to 1/modifyUser/modUser@mail.fr', async () => {
+			const body = {
+				name: 'modifyUser',
+				email: 'modUser@mail.fr'
+			}
+			await updateUser(1, body)
+			const result = await connexion('user').where({ id: 1 });
+			expect(result).to.have.length(1);
+			expect(result).to.deep.equal([{ id: 1, ...body }]);
+
 		});
 	});
 });

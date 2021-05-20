@@ -22,6 +22,11 @@ module.exports = {
 		).map(({ name, email }) => ({ name, email })),
 		deleteById: async id => (await trx(USER_TABLE)
 			.where({ id }).del()
-		)
+		),
+		updateUser: (id, values) => {
+			return trx(USER_TABLE)
+				.where({ id })
+				.update(values);
+		}
 	})
 };

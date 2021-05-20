@@ -106,4 +106,32 @@ describe('routes', () => {
 
 		});
 	});
+	describe('/users - PUT', () => {
+		let response;
+		
+		const user = {
+			name: 'user',
+			email: 'user@mail.fr'
+		};
+		beforeEach(async () => {
+			response = await chai.request(app).post('/users').send(user);
+
+		});
+
+		it('User should be updated', async () => {
+			const body = {
+				name: 'putUser',
+				email: 'putUser@mail.fr'
+			};
+			response = await chai.request(app).put('/users/1').send(body);
+
+			const result = await chai.request(app).get('/users/1');
+
+			expect(response).to.have.status(200);
+
+			expect(result).to.have.status(200);
+			expect(result).to.be.json;
+			expect(result.body).to.deep.equal([body]);
+		});
+	});
 });
