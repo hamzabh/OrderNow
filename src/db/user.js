@@ -20,7 +20,7 @@ module.exports = {
 		findById: async id => (await trx(USER_TABLE)
 			.where({ id })
 		).map(({ name, email }) => ({ name, email })),
-		deleteById: async id => (await trx(USER_TABLE)
+		deleteById: async id => (trx(USER_TABLE)
 			.where({ id }).del()
 		)
 	})

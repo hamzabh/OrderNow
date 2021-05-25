@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+'use strict';
 
 exports.validatorBody = schema => (req, res, next) => {
 	const { error } = schema.validate(req.body);
@@ -16,7 +16,7 @@ exports.validatorBody = schema => (req, res, next) => {
 };
 
 exports.validatorParams = schema => (req, res, next) => {
-	const { error, value, warning } = schema.validate(req.params);
+	const { error } = schema.validate(req.params);
 	const valid = error == null;
 
 	if (valid) {

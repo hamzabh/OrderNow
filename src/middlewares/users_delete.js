@@ -10,8 +10,8 @@ async function deleteUserById(req, res) {
 	res.sendStatus(204);
 }
 
-async function deleteUser(id) {
-	return await transaction(KNEX, ({ user }) => user.deleteById(id));
+function deleteUser(id) {
+	return transaction(KNEX, ({ user }) => user.deleteById(id));
 }
 
 module.exports = Object.freeze({

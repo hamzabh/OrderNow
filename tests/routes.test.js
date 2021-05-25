@@ -93,9 +93,8 @@ describe('routes', () => {
 		};
 		beforeEach(async () => {
 			await chai.request(app).post('/users').send(body);
-			response = await chai.request(app).delete('/users/1')
+			response = await chai.request(app).delete('/users/1');
 		});
-
 
 		it('User should be deleted', async () => {
 			expect(response).to.have.status(204);
@@ -103,7 +102,6 @@ describe('routes', () => {
 		it('User - 1/Hamza not found', async () => {
 			const result = await chai.request(app).get('/users/1');
 			expect(result).to.have.status(404);
-
 		});
 	});
 });
