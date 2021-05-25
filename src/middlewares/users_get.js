@@ -13,8 +13,8 @@ async function getAllUsers(req, res) {
 	}
 }
 
-async function getUsers() {
-	return await transaction(KNEX, ({ user }) => user.findAll());
+function getUsers() {
+	return transaction(KNEX, ({ user }) => user.findAll());
 }
 
 async function getUserById(req, res) {
@@ -28,8 +28,8 @@ async function getUserById(req, res) {
 	}
 }
 
-async function getUser(id) {
-	return await transaction(KNEX, ({ user }) => user.findById(id));
+function getUser(id) {
+	return transaction(KNEX, ({ user }) => user.findById(id));
 }
 
 module.exports = Object.freeze({

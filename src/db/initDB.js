@@ -1,9 +1,9 @@
 'use strict';
 
-const { KNEX } = require('../db/connexion');
+const { KNEX } = require('./connexion');
 
 async function initDB() {
-	const connexion = await KNEX
+	const connexion = await KNEX;
 	if (!await connexion.schema.hasTable('user')) {
 		console.log('initDB');
 		await connexion.schema.createTable('user', table => {
@@ -13,7 +13,7 @@ async function initDB() {
 			table.unique('id');
 		});
 	} else {
-		console.log('Table user already exist')
+		console.log('Table user already exist');
 	}
 }
 
